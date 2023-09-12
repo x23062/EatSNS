@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="todo.css">
+  <title>ToDoアプリ</title>
+</head>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1060576928275758',
+      xfbml      : true,
+      version    : 'v17.0'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<body>
+  <div id="content">
+    <div id="GenreBox">
+    </div>
+    <input id="textBox" type="text" size="40" value="やることを入力">
+    <input type="button" value="Go" id="checkButton" onclick="addTask()">
+    <select name="tes" id="genreId">
+      <option value=""></option>
+    </select>
+
+    <input id="genreTextBox" type="text" size="40" value="ジャンルを入力">
+    <input type="button" value="Go" id="checkButton" onclick="addGenre()">
+  </div>
+  <script src="todo.js"></script>
+</body>
+</html>
