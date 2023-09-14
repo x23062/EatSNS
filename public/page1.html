@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EatReel</title>
+  <link href="./static/css/InstagramApp.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <header>
+    <div id="header_logo"><img src="./images/logo.png" alt="ヘッダー画像"></div>
+    <div id="header_login"><img src="./images/login.png" alt="ログインボタン"></div>
+  </header>
+  <main>
+    <div class="nav">
+      <ul>
+        <input type="checkbox" checked id="1" name="nav"><label for="1"><li><img src="./images/1home.png" alt="ホームボタン"></li></label>
+        <input type="checkbox" id="2" name="nav"><label for="2"><li><img src="./images/2short.png" alt="ショートボタン"></li></label>
+        <input type="checkbox" id="3" name="nav"><label for="3"><li><img src="./images/3channel.png" alt="登録チャンネルボタン"></li></label>
+      </ul>
+    </div>
+    <div class="movieList">
+        <section class="movie">
+          <video autoplay controls loop src="./images/1movie.mp4">
+        </section>
+        <section class="movie">
+          <video autoplay controls loop src="./images/2movie.mp4">          
+        </section>
+        <section class="movie">
+          <video autoplay controls loop src="./images/3movie.mp4">
+        </section>
+    </div>
+  </main>
+  <footer></footer>
+
+  <script src="./static/InstagramApp.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+@charset "utf-8";
+
+body{
+  width: auto;
+  margin: 0px;
+  padding: 0px;
+  background-color: white;
+}
+
+header {
+  height: 65px;
+  margin: 0 auto;
+} 
+
+#header_logo {
+  width: 270px;
+  height: 90px;
+  margin: 0%;
+  padding: 0%;
+  float: left;
+}
+
+#header_login {
+  width: 90px;
+  height: 90px;
+  margin: 0%;
+  padding: 0%;
+  float: right;
+}
+
+main{
+  width: 100%;
+  margin: 0px;
+  padding: 0%;
+  display: flex;
+}
+
+.nav{
+  width: 280px;
+  margin: 5px 1px;
+  padding: 5px 1px;
+  border-right: 1px solid #a0a0a0;
+}
+
+.nav label{
+  display: block;
+  width: 270px;
+  background: white;
+  color: #000;
+  padding: 5px;
+  margin: 5px;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.nav input:checked+label{
+  background: rgb(190, 190, 190);
+  color: #FFF;
+}
+
+.nav input{
+  display: none;
+}
+
+ ul {
+  margin: 0px;
+  padding: 0px;
+ }
+
+ li {
+  list-style: none;
+ }
+
+ /* 動画view */
+ .movieList{
+  width: 432px;
+  height: 768px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+ }
+
+ .movie {
+  width: auto;
+  padding: 0%;
+  scroll-snap-align: start;
+  height: 100%;
+ }  
+
