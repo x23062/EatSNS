@@ -3,12 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>EatReel</title>
   <link href="./static/css/InstagramApp.css" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
   <header>
     <div id="header_logo"><img src="./images/logo.png" alt="ヘッダー画像"></div>
+    <div>
+      <input type="text" id="serch">
+      <input type="button" onclick="Serch()" value="検索">
+    </div>
     <div id="header_login"><img src="./images/login.png" alt="ログインボタン"></div>
   </header>
   <main>
@@ -19,21 +26,89 @@
         <input type="checkbox" id="3" name="nav"><label for="3"><li><img src="./images/3channel.png" alt="登録チャンネルボタン"></li></label>
       </ul>
     </div>
-    <div class="movieList">
-        <section class="movie">
-          <video autoplay controls loop src="./images/1movie.mp4">
-        </section>
-        <section class="movie">
-          <video autoplay controls loop src="./images/2movie.mp4">          
-        </section>
-        <section class="movie">
-          <video autoplay controls loop src="./images/3movie.mp4">
-        </section>
+    <div class="movieList" id="movieList">
     </div>
     <div class="button">
       <img src="./images/button2.png">
     </div>
   </main>
-  <script src="./static/InstagramApp.js"></script>
 </body>
+<script>
+let access_token = "EAAJ3mxwna00BOZCiXXt6DHXDMvbEwNQQxkFp7GjZBZBjGkYYZBfJdZBdJhSct3OdhpRbqZCZAKa4eVj80cZBMjU2pTBHnUb50YlZBUruwpxvaIj33Gl9ZCbr8iZCuOKWgTQBjkVB6JZA7Lv8wykq9hBR9eZBNtiZBuZC1lmdtPaKqgbQ8ZA9w4Y7cy9MN2WEP3ovjkivinh4ZC8x19z4Lq2jksxz4GL3Q9vtjKFj8kitrSAgZD";
+let div_element = document.getElementById("main_div");
+let new_element = document.getElementById('movieList');
+let serch_word = document.getElementById("serch").value;
+let img = document.createElement('img');
+let section = document.createElement('section');
+section.className = "movie";
+let serch_id;
+
+
+function Serch(){
+
+    console.log(serch_word);
+
+    $.ajax({
+        type: 'GET',
+        url: 'https://graph.facebook.com/v17.0/ig_hashtag_search?user_id=17841461997795323&q=' + serch_word + '&access_token=' + access_token,
+        dataType: 'json',
+        success: function(json) {
+                console.log(json.data[0].id);
+                serch_id = json.data[0].id;
+                view();
+            }
+    });
+}
+function view(){
+    $.ajax({
+    type: 'GET',
+    url: 'https://graph.facebook.com/'+ serch_id +'/top_media?user_id=17841461997795323&fields=caption,comments_count,id,like_count,media_type,media_url,permalink,timestamp,children{media_url}&access_token=' + access_token + '&limit=10',
+    dataType: 'json',
+    success: function(json) {
+        console.log(json);
+        for(let i = 0; i < json["data"].length; i++){
+            if(json.data[i].media_type == "VIDEO" && json.data[i].media_url != null){
+                let img = document.createElement('video');
+
+                console.log(json.data[i]);
+
+                img.src = json.data[i].media_url;
+                img.type="video/mp4";
+                img.autoplay = true;
+                img.loop = true;
+                img.volume = 1;
+                img.width = 300;
+                img.height = 300;
+
+                section.appendChild(img);
+                new_element.appendChild(section);
+                console.log(json.data[i].permalink);
+            }
+            else if(json.data[i].media_type == "CAROUSEL_ALBUM" ){
+                for(let j = 0; j < json.data[i].children['data'].length; j++){
+                    if(json.data[i].children.data[j].media_url.includes("mp4")){
+                        const img = document.createElement("video");
+
+                        img.src = json.data[i].children.data[j].media_url;
+                        img.type="video/mp4";
+                        img.autoplay = true;
+                        img.loop = true;
+                        img.volume = 1;
+                        img.width = 300;
+                        img.height = 300;
+
+                        console.log(json.data[i].children.data[j].media_url);
+
+                        section.appendChild(img);
+                        new_element.appendChild(section);
+                        console.log(json.data[i].permalink);
+                    }
+                }
+            }
+        }
+        div_element.appendChild(new_element);
+    }
+    });
+}
+</script>
 </html>
