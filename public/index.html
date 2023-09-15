@@ -3,40 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./static/css/todo.css">
-  <title>ToDoアプリ</title>
+  <title>EatReel</title>
+  <link href="./static/css/InstagramApp.css" rel="stylesheet" type="text/css">
 </head>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1060576928275758',
-      xfbml      : true,
-      version    : 'v17.0'
-    });
-    FB.AppEvents.logPageView();
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 <body>
-  <div id="content">
-    <div id="GenreBox">
+  <header>
+    <div id="header_logo"><img src="./images/logo.png" alt="ヘッダー画像"></div>
+    <div id="header_login"><img src="./images/login.png" alt="ログインボタン"></div>
+  </header>
+  <main>
+    <div class="nav">
+      <ul>
+        <input type="checkbox" checked id="1" name="nav"><label for="1"><li><img src="./images/1home.png" alt="ホームボタン"></li></label>
+        <input type="checkbox" id="2" name="nav"><label for="2"><li><img src="./images/2short.png" alt="ショートボタン"></li></label>
+        <input type="checkbox" id="3" name="nav"><label for="3"><li><img src="./images/3channel.png" alt="登録チャンネルボタン"></li></label>
+      </ul>
     </div>
-    <input id="textBox" type="text" size="40" value="やることを入力">
-    <input type="button" value="Go" id="checkButton" >
-    <select name="tes" id="genreId">
-      <option value=""></option>
-    </select>
-
-    <input id="genreTextBox" type="text" size="40" value="ジャンルを入力">
-    <input type="button" value="Go" id="checkButton" onclick="getIgHashId()">
-  </div>
+    <div class="movieList">
+        <section class="movie">
+          <video autoplay controls loop src="./images/1movie.mp4">
+        </section>
+        <section class="movie">
+          <video autoplay controls loop src="./images/2movie.mp4">          
+        </section>
+        <section class="movie">
+          <video autoplay controls loop src="./images/3movie.mp4">
+        </section>
+    </div>
+    <div class="button">
+      <img src="./images/button2.png">
+    </div>
+  </main>
   <script src="./static/InstagramApp.js"></script>
 </body>
 </html>
