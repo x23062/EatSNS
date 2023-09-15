@@ -92,3 +92,8 @@ main{
   height: 100%;
  }  
 
+.button {
+  width: auto;
+  padding: 10px;
+  height: 100%;
+}
